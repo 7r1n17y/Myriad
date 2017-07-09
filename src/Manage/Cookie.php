@@ -5,6 +5,7 @@ class Cookie extends Extender implements Handler {
   private $params = array();
   public function __construct(array $options = array()) {
     $this->params = session_get_cookie_params();
+    parent::add_ext(new HelperFunc($options));
   }
   public function get(string $name = null, $default_return_val = null) {
     if (!is_string($name) || is_null($name)) {
