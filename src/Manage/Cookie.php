@@ -1,6 +1,6 @@
 <?php
 namespace r7r1n17y\Myriad\Manage;
-use r7r1n17y\Myriad\Interfaces;
+use r7r1n17y\Myriad\Interfaces, r7r1n17y\Myriad\Extender as Extender;
 class Cookie extends Extender implements Handler {
   private $params = array();
   public function __construct(array $options = array()) {
