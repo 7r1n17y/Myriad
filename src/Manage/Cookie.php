@@ -30,11 +30,11 @@ class Cookie implements Handler {
     if (!is_int($expire) && !is_float($expire)) {
       throw new \InvalidArgumentException(sprintf('$expire only accepts integers. Input was: "%s"', gettype($expire));
     }
-		$expire = intval($expire);
+    $expire = intval($expire);
     if ($expire === 0) {
       $expire = time() - (time() * 2);
     }
     setcookie($name, $this->_encode(array('val' => $val)), time() + ($expire), $this->params['path'], $this->params['domain'], $this->params['secure'], $this->params['httponly']);
-	}
+  }
 }
 ?>
