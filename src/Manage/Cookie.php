@@ -47,6 +47,6 @@ class Cookie implements Handler {
       unset($_COOKIE[$name]);
       setcookie($name, '', time() - 42000, $this->params['path'], $this->params['domain'], $this->params['secure'], $this->params['httponly']);
     }
-	}
+  }
 }
 ?>
