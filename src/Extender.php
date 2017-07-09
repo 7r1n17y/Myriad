@@ -18,12 +18,10 @@ abstract class Extender {
   public function __call($method, $args) {
     foreach($this->_exts as $ext) {
       if (method_exists($ext, $method)) {
-            return call_user_method_array($method,$ext,$args);
+        return call_user_method_array($method,$ext,$args);
       }
-        }
-        throw new Exception("This Method {$method} doesn't exists");
     }
-    
-    
+    throw new \RuntimeException(sprintf('This method "%s" doesn\'t exists', $method);
+  }  
 }
 ?>
