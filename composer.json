@@ -1,1 +1,7 @@
-
+{
+  "name": "7r1n17y/Myriad",
+  "description": "A powerful framework designed to deliver!",
+  "require": {
+    "php": ">=7.0.0"
+  }
+}
