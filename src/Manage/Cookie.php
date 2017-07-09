@@ -10,7 +10,7 @@ class Cookie implements Handler {
     if (!is_string($name) || is_null($name)) {
       throw new \InvalidArgumentException(sprintf('$name only accepts strings. Input was: "%s"', gettype($name));
     }
-    if ($name === '') {
+    if (empty($name)) {
       throw new \InvalidArgumentException('$name can not be empty.');
     }
     if (isset($_COOKIE[$name])) {
@@ -22,7 +22,7 @@ class Cookie implements Handler {
     if (!is_string($name) || is_null($name)) {
       throw new \InvalidArgumentException(sprintf('$name only accepts strings. Input was: "%s"', gettype($name));
     }
-    if ($name === '') {
+    if (empty($name)) {
       throw new \InvalidArgumentException('$name can not be empty.');
     }
     $val = isset($options['val']) ? $options['val'] : null;
@@ -36,5 +36,17 @@ class Cookie implements Handler {
     }
     setcookie($name, $this->_encode(array('val' => $val)), time() + ($expire), $this->params['path'], $this->params['domain'], $this->params['secure'], $this->params['httponly']);
   }
+  public function delete(string $name = null) {
+    if (!is_string($name) || is_null($name)) {
+      throw new \InvalidArgumentException(sprintf('$name only accepts strings. Input was: "%s"', gettype($name));
+    }
+    if (empty($name)) {
+      throw new \InvalidArgumentException('$name can not be empty.');
+    }
+    if (isset($_COOKIE[$name])) {
+      unset($_COOKIE[$name]);
+      setcookie($name, '', time() - 42000, $this->params['path'], $this->params['domain'], $this->params['secure'], $this->params['httponly']);
+    }
+	}
 }
 ?>
