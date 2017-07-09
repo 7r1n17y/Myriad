@@ -2,7 +2,23 @@
   "name": "7r1n17y/Myriad",
   "type": "library",
   "description": "A powerful framework designed to deliver!",
+  "keywords": ["php", "php-framework", "php7", "php-security", "php-sessions", "php-csrf", "php-auth"],
+  "homepage": "https://github.com/7r1n17y/Myriad",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Aveu Mizura",
+      "email": "7r1n17y7@gmail.com",
+      "homepage": "https://github.com/7r1n17y/",
+      "role": "Developer"
+    }
+  ],
   "require": {
     "php": ">=7.0.0"
+  }
+  "autoload": {
+    "psr-0": {
+      "Monolog": "src"
+    }
   }
 }
