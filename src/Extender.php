@@ -1,4 +1,5 @@
 <?php
+namespace r7r1n17y\Myriad\Helper;
 abstract class Extender {
   private $_exts = array();
   public $_this;
