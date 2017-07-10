@@ -52,6 +52,12 @@ class Csrf extends Extender implements Forms {
     }
     return $this->cookie->get('token_id');
   }
+  /**
+   * Sets the object classes and adds an external helper class
+   * @param mixed[] $options Contains any avaliable configuration options
+   * @throws RuntimeException If the classes we not successfully set
+   * @return void
+   */
   public function run(array $request_data = array(), bool $chk = null, array $const_options = array()) {
     if ($this->equals($const_options, 'validate_csrf')) {
       if (!$this->_validRequest($chk)) {
@@ -73,26 +79,48 @@ class Csrf extends Extender implements Forms {
       }
     }
   }
+  /**
+   * Checks to see if it's a valid request
+   * @param bool $chk Contains weather or not to validate ajax requests
+   * @return bool True on a valid requst and false on a bad one
+   */
   private function _validRequest(bool $chk = null) {
     if ($this->_isAjaxRequest($chk) && $this->_validReferer()) {
       return true;
     }
     return false;
   }
+  /**
+   * Sends the session csrf token
+   * @return void
+   */
   private function _generateToken() {
     $this->session->send($this->token_name, bin2hex(random_bytes(32)));
   }
+  /**
+   * Send the cookie token with an additional one to the session
+   * @return void
+   */
   private function _generateCookie() {
     $token = $this->random(20);
     $this->cookie->send('token_id', $token, array('expire', 0));
     $this->session->send('token_id', $token);
   }
+  /**
+   * Checks to see if this is a valid ajax request
+   * @param bool $chk Tells the script weather to validate the check for ajax
+   * @return bool True on a valid ajax request and false on a bad one
+   */
   private static function _isAjaxRequest(bool $chk = null) {
     if ($chk === false) {
       return true;
     }
     return !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
   }
+  /**
+   * Checks to see if the referrer is valid
+   * @return bool True on a valid referrer and false on a bad one
+   */
   private function _validReferrer() {
     $url = parse_url(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '');
     if (!isset($url['host'])) {
