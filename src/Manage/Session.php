@@ -30,7 +30,7 @@ class Session implements Handler {
    * @throws InvalidArgumentException If the name variable is not a string or is empty
    * @return void
    */
-  public function send(string $name = null, array $options = array('val' => null)) {
+  public function send(string $name = null, array $options = array('val' => null, 'expire' => 0)) {
     if (!is_string($name) || is_null($name)) {
       throw new \InvalidArgumentException(sprintf('$name only accepts strings. Input was: "%s"', gettype($name));
     }
