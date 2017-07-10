@@ -1,4 +1,7 @@
 <?php
+/**
+ * @copyright 2017-2017 Aveu Mizura
+ */
 namespace r7r1n17y\Myriad\Interfaces;
 interface Handler {
   public function __construct(array $options = array());
