@@ -3,7 +3,7 @@
  * @copyright 2017-2017 Aveu Mizura
  */
 namespace r7r1n17y\Myriad\Manage;
-use \r7r1n17y\Myriad\Interfaces, \r7r1n17y\Myriad\Helper\Func as HelperFunc, \r7r1n17y\Myriad\Helper\Extender as Extender;
+use \r7r1n17y\Myriad\Interfaces, \r7r1n17y\Myriad\Helper\Extender as Extender;
 class Cookie extends Extender implements Handler {
   /** @var mixed[] $params An array containing the cookie params */
   private $params = array();
@@ -14,7 +14,7 @@ class Cookie extends Extender implements Handler {
    */
   public function __construct(array $options = array()) {
     $this->params = session_get_cookie_params();
-    parent::add_ext(new HelperFunc($options));
+    parent::add_ext(new \HelperFunc($options));
   }
   /**
    * Gets the cookie requested
